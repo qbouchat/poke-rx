@@ -1,0 +1,9 @@
+<article class="pokemon__miniature" *ngIf="pokemon">
+    <figure class="pokemon__miniature__img">
+        <img [src]="pokemon.sprite" [alt]="pokemon.name" *ngIf="pokemon.sprite" />
+    </figure>
+    <h1 class="pokemon__name">{{ pokemon.name }} <span class="pokemon__order">#{{ pokemon.order }}</span></h1>
+    <ul class="pokemon__types">
+        <li *ngFor="let type of pokemon.types"><img [src]="'/assets/img/' + type.name + '.png'" [alt]="type.name" /></li>
+    </ul>
+</article>

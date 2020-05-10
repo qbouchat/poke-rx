@@ -1,0 +1,41 @@
+.pokemon__miniature {
+    .pokemon__miniature__img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 150px;
+        height: 150px;
+
+        margin: 0 auto;
+
+        background-color: #616161;
+        border: 5px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 4px 4px 0px #212121;
+    }
+
+    .pokemon__name {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        text-transform: capitalize;
+        color: #424242;
+    }
+
+    .pokemon__order {
+        font-weight: normal;
+        color: #a4acaf;
+    }
+
+    .pokemon__types {
+        display: block;
+        text-align: center;
+
+        li {
+            display: inline;
+            margin: 0 0.2rem;
+        }
+    }
+}
