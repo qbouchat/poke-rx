@@ -1,0 +1,59 @@
+<section class="pokemon__detail" *ngIf="pokemon$ | async as pokemon">
+
+    <header class="pokemon__detail__header">
+        <h1 class="pokemon__name">{{ pokemon.name }} <span class="pokemon__order">#{{ pokemon.order }}</span></h1>
+        <ul class="pokemon__types">
+            <li *ngFor="let type of pokemon.types"><img [src]="'/assets/img/' + type.name + '.png'" [alt]="type.name" /></li>
+        </ul>
+    </header>
+
+    <div class="pokemon__detail__row">
+        <figure class="pokemon__detail__artwork">
+            <img [src]="'https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg'" [alt]="pokemon.name" />
+        </figure>
+
+        <div class="pokemon__detail__stats">
+            <ul class="pokemon__stats">
+                <li>
+                    <p class="pokemon__stat__name">Height</p>
+                    <p class="pokemon__stat__value">{{ pokemon.height }}</p>
+                </li>
+                <li>
+                    <p class="pokemon__stat__name">Weight</p>
+                    <p class="pokemon__stat__value">{{ pokemon.weight }}</p>
+                </li>
+                <li *ngFor="let stat of pokemon.stats">
+                    <p class="pokemon__stat__name">{{ stat.name }}</p>
+                    <p class="pokemon__stat__value">{{ stat.value }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pokemon__abilites">
+        <div class="pokemon__detail__title">Abilites</div>
+        <ul class="pokemon__abilities__list">
+            <li class="pokemon__ability" *ngFor="let ability of pokemon.abilities">
+                <p class="pokemon__ability__name">{{ ability.name }}<span *ngIf="ability.hidden"> [Hidden]</span></p>
+                <p class="pokemon__ability__description">{{ ability.effect }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="pokemon__moves">
+        <div class="pokemon__detail__title">Moves</div>
+        <ul class="pokemon__moves__list">
+            <li class="pokemon__move" *ngFor="let move of pokemonMoves$ | async">
+                <p class="pokemon__move__name">{{ move.name }} <img [src]="'/assets/img/' + move.type + '.png'" [alt]="move.type" /></p>
+                <p class="pokemon__move__description">{{ move.description }}</p>
+            </li>
+        </ul>
+
+        <mat-paginator *ngIf="page$ | async as page"
+            [length]="page.length"
+            [pageIndex]="page.pageIndex"
+            [pageSize]="page.pageSize"
+            (page)="changeMovesPagination($event)">
+        </mat-paginator>
+    </div>
+</section>
